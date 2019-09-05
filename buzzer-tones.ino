@@ -1,53 +1,47 @@
 /*
-  Melody
+  Code by: www.munphurid.com
+  M.Hashir and Wardah Arshad
 
-  Plays a melody
+  This is a code that generate different tunes on buzzer at pin 11
 
-  circuit:
-   8-ohm speaker on digital pin 8
+  Hardware:
+  -Arduino
+  -buzzer
 
-  created 21 Jan 2010
-  modified 30 Aug 2011
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  http://arduino.cc/en/Tutorial/Tone
-
+  Connections:
+  -Connect +ve of buzzer to pin 11 of Arduino
+  -Connect -ve of buzzer to GND of Arduino
 */
-int buzzer = 11;              //Buzzer is connected to pin11
+
+int buzzer = 11;                                               //Buzzer is connected to pin11
 
 #include "pitches.h"
 
-// notes in the melody:
-int melody[] = {
-  2000, 2000, 2000, 2000, 2000  //Enter notes or frequencies here
+int melody[] = {                                                // notes in the melody:
+  2000, 2000, 2000, 2000, 2000                                   //Enter notes or frequencies here
 };
 
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-  4, 8, 8, 4, 4, 4, 4, 4      //Enter duration of each note or frequency
+int noteDurations[] = {                                         // note durations: 4 = quarter note, 8 = eighth note, etc.:
+  4, 8, 8, 4, 4, 4, 4, 4                                        //Enter duration of each note or frequency
 };
 
 void setup() {
-  // iterate over the notes of the melody:
-  for (int thisNote = 0; thisNote < 8; thisNote++) {
-
-    // to calculate the note duration, take one second
-    // divided by the note type.
-    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    int noteDuration = 1000 / noteDurations[thisNote];
-    tone(buzzer, melody[thisNote], noteDuration);
-
-    // to distinguish the notes, set a minimum time between them.
-    // the note's duration + 30% seems to work well:
-    int pauseBetweenNotes = noteDuration * 1.30;
-    delay(pauseBetweenNotes);
-    // stop the tone playing:
-    noTone(buzzer);
-  }
+  Serial.begin(9600);
 }
 
 void loop() {
+  for (int thisNote = 0; thisNote < 8; thisNote++) {           // iterate over the notes of the melody:
+
+    // to calculate the note duration, take one second
+    // divided by the note type.
+    int noteDuration = 1000 / noteDurations[thisNote];          //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+    tone(buzzer, melody[thisNote], noteDuration);
+
+
+    int pauseBetweenNotes = noteDuration * 1.30;                // to distinguish the notes, set a minimum time between them.
+    delay(pauseBetweenNotes);                                   // the note's duration + 30% seems to work well:
+    noTone(buzzer);                                             // stop the tone playing:
+    delay(10);
+  }
   // no need to repeat the melody.
 }
