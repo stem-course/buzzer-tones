@@ -1,28 +1,31 @@
 /*
-  Code by: www.munphurid.com
+  Code by:
   M.Hashir and Wardah Arshad
 
-  This is a code that generate different tunes on buzzer at pin 11
+  This is a code that generates different tunes using buzzer at pin 11
+
+To do:
+Also download pitches.h from this repository and put it in the same folder with this code.
 
   Hardware:
   -Arduino
   -buzzer
 
   Connections:
-  -Connect +ve of buzzer to pin 11 of Arduino
-  -Connect -ve of buzzer to GND of Arduino
+  -Connect longer leg of buzzer to pin 11 of Arduino
+  -Connect shorter leg of buzzer to GND of Arduino
 */
 
-int buzzer = 11;                                               //Buzzer is connected to pin11
+int buzzer = 11;                                               //Buzzer is connected to pin 11
 
 #include "pitches.h"
 
-int melody[] = {                                                // notes in the melody:
-  2000, 2000, 2000, 2000, 2000                                   //Enter notes or frequencies here
+int melody[] = {                                               
+  2000, 3000, 2000, 4000, 2000                                   //These are frequencies of sound which will be played
 };
 
 int noteDurations[] = {                                         // note durations: 4 = quarter note, 8 = eighth note, etc.:
-  4, 8, 8, 4, 4, 4, 4, 4                                        //Enter duration of each note or frequency
+  4, 8, 8, 4, 4, 4, 4, 4                                        //This is duration corresponding to each frequency for which buzzer sounds. Note: 8 is shorter than 1
 };
 
 void setup() {
@@ -30,18 +33,15 @@ void setup() {
 }
 
 void loop() {
-  for (int thisNote = 0; thisNote < 8; thisNote++) {           // iterate over the notes of the melody:
-
-    // to calculate the note duration, take one second
-    // divided by the note type.
+  for (int thisNote = 0; thisNote < 8; thisNote++) {           //Do not edit
+    
     int noteDuration = 1000 / noteDurations[thisNote];          //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    tone(buzzer, melody[thisNote], noteDuration);
+    tone(buzzer, melody[thisNote], noteDuration);               //Plays one note for a small duration
 
-
-    int pauseBetweenNotes = noteDuration * 1.30;                // to distinguish the notes, set a minimum time between them.
-    delay(pauseBetweenNotes);                                   // the note's duration + 30% seems to work well:
+    int pauseBetweenNotes = noteDuration * 1.30;                // Do not edit
+    delay(pauseBetweenNotes);                                   // Do not edit
     noTone(buzzer);                                             // stop the tone playing:
-    delay(10);
+    delay(10);                                                  //Wait
   }
-  // no need to repeat the melody.
+delay(1000);    //Wait for 1s before tune is played again
 }
