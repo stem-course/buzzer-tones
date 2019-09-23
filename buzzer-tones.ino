@@ -21,7 +21,7 @@ int buzzer = 11;                                               //Buzzer is conne
 #include "pitches.h"
 
 int melody[] = {                                               
-  2000, 3000, 2000, 4000, 2000                                   //These are frequencies of sound which will be played
+  2000, 3000, 2000, 4000, 2000, 3000, 4000, 2000                //These are frequencies of sound in Hertz which will be played
 };
 
 int noteDurations[] = {                                         // note durations: 4 = quarter note, 8 = eighth note, etc.:
@@ -35,7 +35,7 @@ void setup() {
 void loop() {
   for (int thisNote = 0; thisNote < 8; thisNote++) {           //Do not edit
     
-    int noteDuration = 1000 / noteDurations[thisNote];          //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+    int noteDuration = 1000 / noteDurations[thisNote];          
     tone(buzzer, melody[thisNote], noteDuration);               //Plays one note for a small duration
 
     int pauseBetweenNotes = noteDuration * 1.30;                // Do not edit
