@@ -18,8 +18,6 @@ Also download pitches.h from this repository and put it in the same folder with 
 
 int buzzer = 11;                                               //Buzzer is connected to pin 11
 
-#include "pitches.h"
-
 int melody[] = {                                               
   2000, 3000, 2000, 4000, 2000, 3000, 4000, 2000                //These are frequencies of sound in Hertz which will be played
 };
