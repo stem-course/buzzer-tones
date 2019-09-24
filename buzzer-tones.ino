@@ -4,9 +4,6 @@
 
   This is a code that generates different tunes using buzzer at pin 11
 
-To do:
-Also download pitches.h from this repository and put it in the same folder with this code.
-
   Hardware:
   -Arduino
   -buzzer
